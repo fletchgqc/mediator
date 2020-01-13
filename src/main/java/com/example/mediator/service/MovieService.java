@@ -1,22 +1,22 @@
 package com.example.mediator.service;
 
 import com.example.mediator.domain.Movie;
+import com.example.mediator.repository.MovieRepository;
+import io.vavr.control.Try;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import com.example.mediator.repository.MovieRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.Random;
 
 @Service
 public class MovieService {
     private MovieRepository movieRepository;
+    private Movie fallbackMovie = new Movie(0L, "Titanic", "3h 15m");
 
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
+
     }
 
     public List<Movie> getMovies() {
@@ -26,6 +26,11 @@ public class MovieService {
     }
 
     public Movie getMovie() {
-        return getMovies().get(0);
+        return Try.ofSupplier(() -> getRecommendedMovie()).getOrElse(fallbackMovie);
+    }
+
+    private Movie getRecommendedMovie() {
+        List<Movie> movies = getMovies();
+        return movies.get(new Random().nextInt(movies.size()));
     }
 }

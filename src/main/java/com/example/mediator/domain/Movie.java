@@ -19,12 +19,12 @@ public class Movie {
     private String duration;
 
     protected Movie() {
-
     }
 
     public Movie(String title, String duration) {
-        //this.id = UUID.randomUUID().toString();
         this.title = title;
         this.duration = duration;
     }
+
+
 }
