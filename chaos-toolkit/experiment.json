@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "title": "Delay Movie Recommendation",
+  "description": "N/A",
+  "tags": [],
+  "steady-state-hypothesis": {
+    "title": "Movie recommendation in less than a second",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "we-can-request-movie",
+        "tolerance": 200,
+        "provider": {
+          "type": "http",
+          "timeout": 1,
+          "verify_tls": false,
+          "url": "http://localhost:8080/movies"
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "name": "enable_chaosmonkey",
+      "provider": {
+        "arguments": {
+          "base_url": "http://localhost:8080/actuator"
+        },
+        "func": "enable_chaosmonkey",
+        "module": "chaosspring.actions",
+        "type": "python"
+      },
+      "type": "action"
+    }
+  ],
+
+  "rollbacks": [
+    {
+      "name": "disable_chaosmonkey",
+      "provider": {
+        "arguments": {
+          "base_url": "http://localhost:8080/actuator"
+        },
+        "func": "disable_chaosmonkey",
+        "module": "chaosspring.actions",
+        "type": "python"
+      },
+      "type": "action"
+    }]
+}

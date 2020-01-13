@@ -1,0 +1,197 @@
+{
+  "chaoslib-version": "1.7.1",
+  "platform": "Darwin-19.2.0-x86_64-i386-64bit",
+  "node": "Johns-MacBook-Pro-6.local",
+  "experiment": {
+    "version": "1.0.0",
+    "title": "Delay Movie Recommendation",
+    "description": "N/A",
+    "tags": [],
+    "steady-state-hypothesis": {
+      "title": "Movie recommendation in less than a second",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "we-can-request-movie",
+          "tolerance": 200,
+          "provider": {
+            "type": "http",
+            "timeout": 1,
+            "verify_tls": false,
+            "url": "http://localhost:8080/movies"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "name": "enable_chaosmonkey",
+        "provider": {
+          "arguments": {
+            "base_url": "http://localhost:8080/actuator"
+          },
+          "func": "enable_chaosmonkey",
+          "module": "chaosspring.actions",
+          "type": "python"
+        },
+        "type": "action"
+      }
+    ],
+    "rollbacks": [
+      {
+        "name": "disable_chaosmonkey",
+        "provider": {
+          "arguments": {
+            "base_url": "http://localhost:8080/actuator"
+          },
+          "func": "disable_chaosmonkey",
+          "module": "chaosspring.actions",
+          "type": "python"
+        },
+        "type": "action"
+      }
+    ],
+    "dry": false
+  },
+  "start": "2020-01-13T11:30:15.926898",
+  "status": "failed",
+  "deviated": true,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "we-can-request-movie",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "timeout": 1,
+              "verify_tls": false,
+              "url": "http://localhost:8080/movies"
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 13 Jan 2020 11:30:15 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "title": "Inception",
+              "duration": "2h 28m"
+            }
+          },
+          "status": "succeeded",
+          "start": "2020-01-13T11:30:15.927845",
+          "end": "2020-01-13T11:30:15.934984",
+          "duration": 0.007139,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "we-can-request-movie",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "timeout": 1,
+              "verify_tls": false,
+              "url": "http://localhost:8080/movies"
+            }
+          },
+          "output": null,
+          "status": "failed",
+          "exception": [
+            "Traceback (most recent call last):\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/connectionpool.py\", line 421, in _make_request\n    six.raise_from(e, None)\n",
+            "  File \"<string>\", line 3, in raise_from\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/connectionpool.py\", line 416, in _make_request\n    httplib_response = conn.getresponse()\n",
+            "  File \"/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/lib/python3.7/http/client.py\", line 1344, in getresponse\n    response.begin()\n",
+            "  File \"/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/lib/python3.7/http/client.py\", line 306, in begin\n    version, status, reason = self._read_status()\n",
+            "  File \"/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/lib/python3.7/http/client.py\", line 267, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n",
+            "  File \"/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/lib/python3.7/socket.py\", line 589, in readinto\n    return self._sock.recv_into(b)\n",
+            "socket.timeout: timed out\n",
+            "\nDuring handling of the above exception, another exception occurred:\n\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/requests/adapters.py\", line 449, in send\n    timeout=timeout\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/connectionpool.py\", line 720, in urlopen\n    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/util/retry.py\", line 400, in increment\n    raise six.reraise(type(error), error, _stacktrace)\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/packages/six.py\", line 735, in reraise\n    raise value\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/connectionpool.py\", line 672, in urlopen\n    chunked=chunked,\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/connectionpool.py\", line 423, in _make_request\n    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/urllib3/connectionpool.py\", line 331, in _raise_timeout\n    self, url, \"Read timed out. (read timeout=%s)\" % timeout_value\n",
+            "urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=1)\n",
+            "\nDuring handling of the above exception, another exception occurred:\n\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/chaoslib/provider/http.py\", line 53, in run_http_activity\n    verify=verify_tls)\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/requests/sessions.py\", line 546, in get\n    return self.request('GET', url, **kwargs)\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/requests/sessions.py\", line 533, in request\n    resp = self.send(prep, **send_kwargs)\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/requests/sessions.py\", line 646, in send\n    r = adapter.send(request, **kwargs)\n",
+            "  File \"/Users/john/.venvs/chaostk/lib/python3.7/site-packages/requests/adapters.py\", line 529, in send\n    raise ReadTimeout(e, request=request)\n",
+            "requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=1)\n",
+            "\nDuring handling of the above exception, another exception occurred:\n\n",
+            "chaoslib.exceptions.ActivityFailed: activity took too long to complete\n"
+          ],
+          "start": "2020-01-13T11:30:15.945006",
+          "end": "2020-01-13T11:30:16.958178",
+          "duration": 1.013172,
+          "tolerance_met": false
+        }
+      ]
+    }
+  },
+  "run": [
+    {
+      "activity": {
+        "name": "enable_chaosmonkey",
+        "provider": {
+          "arguments": {
+            "base_url": "http://localhost:8080/actuator"
+          },
+          "func": "enable_chaosmonkey",
+          "module": "chaosspring.actions",
+          "type": "python"
+        },
+        "type": "action"
+      },
+      "output": "Chaos Monkey is enabled",
+      "status": "succeeded",
+      "start": "2020-01-13T11:30:15.935942",
+      "end": "2020-01-13T11:30:15.944342",
+      "duration": 0.0084
+    }
+  ],
+  "rollbacks": [
+    {
+      "activity": {
+        "name": "disable_chaosmonkey",
+        "provider": {
+          "arguments": {
+            "base_url": "http://localhost:8080/actuator"
+          },
+          "func": "disable_chaosmonkey",
+          "module": "chaosspring.actions",
+          "type": "python"
+        },
+        "type": "action"
+      },
+      "output": "Chaos Monkey is disabled",
+      "status": "succeeded",
+      "start": "2020-01-13T11:30:16.959004",
+      "end": "2020-01-13T11:30:16.964872",
+      "duration": 0.005868
+    }
+  ],
+  "end": "2020-01-13T11:30:16.965067",
+  "duration": 1.0777020454406738
+}
