@@ -19,14 +19,14 @@ public class MovieService {
 
     }
 
-    public List<Movie> getMovies() {
+    public Movie getMovie() {
+        return Try.of(() -> getRecommendedMovie()).getOrElse(fallbackMovie);
+    }
+
+    private List<Movie> getMovies() {
         List<Movie> movies = new ArrayList<>();
         movieRepository.findAll().forEach(movies::add);
         return movies;
-    }
-
-    public Movie getMovie() {
-        return Try.ofSupplier(() -> getRecommendedMovie()).getOrElse(fallbackMovie);
     }
 
     private Movie getRecommendedMovie() {
