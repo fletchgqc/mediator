@@ -22,8 +22,8 @@ public class MediatorApplication {
 			repository.save(new Movie("Inception", "2h 28m"));
 			repository.save(new Movie("Source code", "1h 33m"));
 			repository.save(new Movie("Forest Gump", "2h 22m"));
-			repository.save(new Movie("Source code", "1h 33m"));
-			repository.save(new Movie("Source code", "1h 33m"));
+			repository.save(new Movie("Life Is Beautiful", "1h 56m"));
+			repository.save(new Movie("12 Angry Men", "1h 36min"));
 			repository.save(new Movie("Source code", "1h 33m"));
 			repository.save(new Movie("Source code", "1h 33m"));
 			repository.save(new Movie("Source code", "1h 33m"));
