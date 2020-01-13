@@ -13,15 +13,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MovieService {
-
-    @Autowired
     private MovieRepository movieRepository;
-    List<Movie> movies = List.of(new Movie("Inception", "2h 28m"), new Movie("Interstellar", "2h 49m"));
 
-//
-//    public MovieService(MovieRepository movieRepository) {
-//        this.movieRepository = movieRepository;
-//    }
+    public MovieService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     public List<Movie> getMovies() {
         List<Movie> movies = new ArrayList<>();
