@@ -29,3 +29,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# chaos-toolkit virtual env
+chaos/
+
+# chaos-toolkit experiments log
+chaos-toolkit/journal.json
+chaos-toolkit/chaostoolkit.log

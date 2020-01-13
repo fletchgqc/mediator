@@ -20,7 +20,8 @@ public class MovieService {
     }
 
     public Movie getMovie() {
-        return Try.of(() -> getRecommendedMovie()).getOrElse(fallbackMovie);
+        return getRecommendedMovie();
+        // return Try.of(() -> getRecommendedMovie()).getOrElse(fallbackMovie);
     }
 
     private List<Movie> getMovies() {
