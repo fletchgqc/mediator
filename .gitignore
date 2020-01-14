@@ -34,5 +34,5 @@ build/
 chaos/
 
 # chaos-toolkit experiments log
-experiments/journal.json
-experiments/chaostoolkit.log
+journal.json
+chaostoolkit.log
