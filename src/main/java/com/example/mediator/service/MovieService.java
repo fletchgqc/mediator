@@ -19,8 +19,7 @@ public class MovieService {
     }
 
     public Movie getMovie() {
-        return getRecommendedMovie();
-        // return Try.of(() -> getRecommendedMovie()).getOrElse(fallbackMovie);
+        return Try.of(this::getRecommendedMovie).getOrElse(fallbackMovie);
     }
 
     private List<Movie> getMovies() {
@@ -31,9 +30,6 @@ public class MovieService {
 
     private Movie getRecommendedMovie() {
         List<Movie> movies = getMovies();
-        if (movies.size() == 0){
-            return null;
-        }
         return movies.get(new Random().nextInt(movies.size()));
     }
 }

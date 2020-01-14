@@ -5,11 +5,9 @@ import com.example.mediator.repository.MovieRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,11 +17,6 @@ public class MovieServiceTest {
     private MovieRepository movieRepository = mock(MovieRepository.class);
     private MovieService movieService = new MovieService(movieRepository);
 
-    @Test
-    public void whenNoMoviesGivenFailGracefully(){
-        when(movieRepository.findAll()).thenReturn(Collections.EMPTY_LIST);
-        assertEquals(null, movieService.getMovie());
-    }
 
     @Test
     public void recommendMovieWhenMoviesAreAvailable(){
