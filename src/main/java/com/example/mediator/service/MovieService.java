@@ -11,12 +11,11 @@ import java.util.Random;
 
 @Service
 public class MovieService {
-    private MovieRepository movieRepository;
-    private Movie fallbackMovie = new Movie(0L, "Titanic", "3h 15m");
+    private final MovieRepository movieRepository;
+    private final Movie fallbackMovie = new Movie(0L, "Titanic", "3h 15m");
 
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
-
     }
 
     public Movie getMovie() {
@@ -32,6 +31,9 @@ public class MovieService {
 
     private Movie getRecommendedMovie() {
         List<Movie> movies = getMovies();
+        if (movies.size() == 0){
+            return null;
+        }
         return movies.get(new Random().nextInt(movies.size()));
     }
 }
