@@ -4,7 +4,7 @@
     "description": "N/A",
     "tags": [],
     "steady-state-hypothesis": {
-        "title": "Movie is recommended when database is available",
+        "title": "Movie is recommended",
         "probes": [
             {
                 "type": "probe",
@@ -12,7 +12,7 @@
                 "tolerance": 200,
                 "provider": {
                     "type": "http",
-                    "timeout": 3,
+                    "timeout": 1,
                     "url": "http://localhost:8080/movies"
                 }
             }
