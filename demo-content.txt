@@ -1,4 +1,12 @@
-1. Initial Step
+0. Prerequisites
+Checkout branch "step1"
+Open Postman
+Open Git Bash (in Project Folder)
+Increase Font-Size of IntellJ and Postman and Git Bash
+Open Slides
+
+
+1. Initial Step [1]
 spring.profiles.active=chaos-monkey
 chaos.monkey.enabled=true
 
@@ -12,14 +20,14 @@ chaos.monkey.assaults.latencyActive=true
   <version>2.2.0</version>
 </dependency>
 
-2. Introduce Fixed Latency
+2. Introduce Fixed Latency [5]
 chaos.monkey.assaults.latencyRangeStart=3000
 chaos.monkey.assaults.latencyRangeEnd=3000
 
-3. Rest Controller
+3. Rest Controller [7]
 chaos.monkey.watcher.restController=true
 
-4. Enable Actuator and reset to basic configs
+4. Enable Actuator and reset to basic configs [8]
 spring.profiles.active=chaos-monkey
 chaos.monkey.enabled=true
 
@@ -31,12 +39,14 @@ management.endpoints.web.exposure.include=*
 Rest-Controller Watcher Postman
 Exception Postman
 
-6. DB-Outage - Use Actuator Watcher Config Repository
+6. DB-Outage - Use Actuator Watcher Config Repository [10]
 Watcher Repository Postman
 
-7. Run Chaos experiment
+7. Run Chaos experiment [13]
 chaos run experiments/experiments.json
 
-8. Run Experiment again
+8. Run Experiment again [16]
 Switch branch
 Run experiment
+
+9. Slides [17]
