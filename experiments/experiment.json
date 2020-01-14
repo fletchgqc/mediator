@@ -39,7 +39,17 @@
                     "base_url": "http://localhost:8080/actuator",
                     "assaults_configuration": {
                         "level": 1,
-                        "exceptionsActive": true
+                        "latencyActive": false,
+                        "exceptionsActive": true,
+                        "exception": {
+                            "type": "java.net.ConnectException",
+                            "arguments": [
+                                {
+                                    "className": "java.lang.String",
+                                    "value": "Connection timed out"
+                                }
+                            ]
+                        }
                     }
                 },
                 "func": "change_assaults_configuration",
