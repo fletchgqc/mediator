@@ -12,39 +12,31 @@ chaos.monkey.assaults.latencyActive=true
   <version>2.2.0</version>
 </dependency>
 
+2. Introduce Fixed Latency
 chaos.monkey.assaults.latencyRangeStart=3000
 chaos.monkey.assaults.latencyRangeEnd=3000
 
-2. Rest Controller
+3. Rest Controller
 chaos.monkey.watcher.restController=true
 
-
-3. Enable Actuator
-
-management.endpoint.chaosmonkey.enabled=true
-management.endpoint.chaosmonkeyjmx.enabled=true
-management.endpoints.web.exposure.include=*
-
-4. Disable (everything except repository)
+4. Enable Actuator and reset to basic configs
 spring.profiles.active=chaos-monkey
 chaos.monkey.enabled=true
-#
-#chaos.monkey.watcher.service=false
-#chaos.monkey.watcher.restController=false
-chaos.monkey.watcher.repository=true
-#chaos.monkey.assaults.level=1
-#chaos.monkey.assaults.latencyActive=false
-#
-#chaos.monkey.assaults.exceptions-active=false
-#
-#
-#chaos.monkey.assaults.latencyRangeStart=3000
-#chaos.monkey.assaults.latencyRangeEnd=3000
-
 
 management.endpoint.chaosmonkey.enabled=true
 management.endpoint.chaosmonkeyjmx.enabled=true
 management.endpoints.web.exposure.include=*
 
-5. Run Chaos experiment
+5. Use Actuator To Configure Exception-Assault on Rest-Controller
+Rest-Controller Watcher Postman
+Exception Postman
+
+6. DB-Outage - Use Actuator Watcher Config Repository
+Watcher Repository Postman
+
+7. Run Chaos experiment
 chaos run experiments/experiments.json
+
+8. Run Experiment again
+Switch branch
+Run experiment
