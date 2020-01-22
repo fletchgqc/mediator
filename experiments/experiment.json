@@ -57,6 +57,26 @@
                 "type": "python"
             },
             "type": "action"
+        },
+        {
+            "name": "configure_repository_watcher",
+            "tolerance": 200,
+            "provider": {
+                "type": "http",
+                "url": "http://localhost:8080/actuator/chaosmonkey/watchers",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "arguments": {
+                    "controller": false,
+                    "restController": false,
+                    "service": false,
+                    "repository": true,
+                    "component": false
+                }
+            },
+            "type": "action"
         }
 
     ],

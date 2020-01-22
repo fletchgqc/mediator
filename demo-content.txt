@@ -48,7 +48,6 @@ chaos run experiments/experiments.json
 8. Run Experiment again [16]
 Switch branch
 Restart App
-Watcher Repository Postman
 Run experiment
 
 9. Slides [17]
